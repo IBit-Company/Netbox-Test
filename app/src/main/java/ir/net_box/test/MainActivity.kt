@@ -8,7 +8,7 @@ import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.tv.material3.ExperimentalTvMaterial3Api
 import dagger.hilt.android.AndroidEntryPoint
-import ir.net_box.test.ui.main.MainScreen
+import ir.net_box.test.ui.NetBoxNavGraph
 import ir.net_box.test.ui.theme.NetboxTestApplicationTheme
 
 @AndroidEntryPoint
@@ -19,11 +19,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             NetboxTestApplicationTheme {
                 CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Rtl) {
-                    MainScreen(
-                        onVideoClick = {
-                            // TODO Navigate to detail screen
-                        }
-                    )
+                    NetBoxNavGraph()
                 }
             }
         }
