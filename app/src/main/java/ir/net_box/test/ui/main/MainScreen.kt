@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.tv.material3.Surface
 import ir.net_box.test.domain.model.Video
 import ir.net_box.test.ui.components.ErrorView
@@ -26,12 +27,16 @@ fun MainScreen(
             is MainUiState.Error -> {
                 ErrorView(
                     errorText = state.message,
-                    onRetryClick = { viewModel.loadVideos() }
+                    onRetryClick = { viewModel.initVideos() }
                 )
             }
 
             is MainUiState.Success -> {
-                VideoRow(title = state.title, videos = state.videos, onItemClick = onVideoClick)
+                VideoRow(
+                    title = state.title,
+                    videos = viewModel.getPagedVideos().collectAsLazyPagingItems(),
+                    onItemClick = onVideoClick
+                )
             }
         }
     }
