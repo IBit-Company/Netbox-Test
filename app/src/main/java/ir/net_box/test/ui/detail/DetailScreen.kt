@@ -1,6 +1,5 @@
 package ir.net_box.test.ui.detail
 
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -8,10 +7,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -24,6 +21,8 @@ import androidx.tv.material3.Surface
 import androidx.tv.material3.Text
 import coil.compose.AsyncImage
 import ir.net_box.test.domain.model.Video
+import ir.net_box.test.ui.components.ErrorView
+import ir.net_box.test.ui.components.LoadingView
 
 @Composable
 fun DetailScreen(
@@ -41,15 +40,14 @@ fun DetailScreen(
     Surface(modifier = modifier.fillMaxSize()) {
         when (state) {
             is DetailUiState.Loading -> {
-                Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                    CircularProgressIndicator(color = Color.White)
-                }
+                LoadingView()
             }
 
             is DetailUiState.Error -> {
-                Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                    Text("خطا: ${state.message}", color = Color.White)
-                }
+                ErrorView(
+                    errorText = state.message,
+                    onRetryClick = { viewModel.loadVideo(videoId) }
+                )
             }
 
             is DetailUiState.Success -> {
