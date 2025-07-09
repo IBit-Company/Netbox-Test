@@ -26,8 +26,8 @@ class MainViewModel @Inject constructor(
         viewModelScope.launch {
             uiState = MainUiState.Loading
             try {
-                val videos = getPlaylistUseCase(playlistId, page)
-                uiState = MainUiState.Success(videos)
+                val playList = getPlaylistUseCase(playlistId, page)
+                uiState = MainUiState.Success(title = playList.title, videos = playList.videos)
             } catch (e: Exception) {
                 uiState = MainUiState.Error(e.message ?: "Unknown error")
             }

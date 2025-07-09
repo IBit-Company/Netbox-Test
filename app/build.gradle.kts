@@ -51,6 +51,7 @@ dependencies {
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.foundation)
+    implementation(libs.androidx.material3)
     implementation(libs.androidx.ui)
 
     // Android core
@@ -66,31 +67,33 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
 
     // Hilt
+    implementation(libs.hilt.navigation.compose)
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
 
     // Retrofit & Moshi
-    implementation (libs.retrofit)
-    implementation (libs.moshi.kotlin)
-    implementation (libs.converter.moshi)
+    implementation(libs.converter.moshi)
+    implementation(libs.moshi.kotlin)
+    ksp(libs.moshi.kotlin.codegen)
+    implementation(libs.retrofit)
 
     // Room
     implementation(libs.androidx.room.runtime)
-    ksp(libs.androidx.room.compiler)
     implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler)
 
     // Paging
-    implementation (libs.androidx.paging.runtime)
-    implementation (libs.paging.compose)
+    implementation(libs.androidx.paging.runtime)
+    implementation(libs.paging.compose)
 
     // ExoPlayer
-    implementation (libs.media3.exoplayer)
-    implementation (libs.androidx.media3.ui)
+    implementation(libs.androidx.media3.ui)
+    implementation(libs.media3.exoplayer)
 
     // Lifecycle
-    implementation (libs.androidx.lifecycle.runtime.ktx.v280)
-    implementation (libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.androidx.lifecycle.runtime.ktx.v280)
 
     // Coil
-    implementation (libs.coil.compose)
+    implementation(libs.coil.compose)
 }

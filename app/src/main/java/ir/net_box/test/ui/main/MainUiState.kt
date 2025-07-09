@@ -4,6 +4,6 @@ import ir.net_box.test.domain.model.Video
 
 sealed class MainUiState {
     object Loading : MainUiState()
-    data class Success(val videos: List<Video>) : MainUiState()
+    data class Success(val title: String, val videos: List<Video>) : MainUiState()
     data class Error(val message: String) : MainUiState()
 }
